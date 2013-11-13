@@ -24,4 +24,13 @@ foreach my $pair ( @pair_onset, @pair_nucleus, @pair_coda ) {
     is( jamo_to_compat($pair->[0]), $pair->[1], $pair->[2] );
 }
 
+my @others = (
+    [ "\x{10FF}", undef, "out of range" ],
+    [ "\x{11C3}", undef, "out of range" ],
+);
+
+foreach my $pair ( @others ) {
+    is( jamo_to_compat($pair->[0]), $pair->[1], $pair->[2] );
+}
+
 done_testing();
