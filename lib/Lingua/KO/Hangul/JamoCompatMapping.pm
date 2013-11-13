@@ -20,9 +20,9 @@ package Lingua::KO::Hangul::JamoCompatMapping;
 Function B<jamo_to_compat()> maps "Hangul Jamo" to "Hangul Compatibility Jamo" and
 returns compatibility jamo code.
 
-It receives as an argument a codepoint of a single Hangul Jamo range, and returns
+It receives as an argument a codepoint of a single Hangul Jamo, and returns
 the codepoint of a Hangul Compatibility Jamo that responds to the argument.
-It returns undefined value in case there is not the mapping for the argument.
+It returns undefined value in case there is not the mapping for given argument.
 
 Up to now, only consonants and vowels that are used in the present-day are mapped.
 
