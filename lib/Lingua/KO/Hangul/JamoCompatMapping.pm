@@ -20,6 +20,36 @@ package Lingua::KO::Hangul::JamoCompatMapping;
 Function B<jamo_to_compat()> maps "Hangul Jamo" to "Hangul Compatibility Jamo" and
 returns compatibility jamo code.
 
+It receives as an argument a codepoint of a single Hangul Jamo range, and returns
+the codepoint of a Hangul Compatibility Jamo that responds to the argument.
+It returns undefined value in case there is not the mapping for the argument.
+
+Up to now, only consonants and vowels that are used in the present-day are mapped.
+
+  CHOSEONG  (the initial sound)   \x{1100} .. \x{1112}
+  JUNGSEONG (the medial sound)    \x{1161} .. \x{1175}
+  JONGSEONG (the final sound)     \x{11A8} .. \x{11C2}
+
+Note that two consonants, one in CHOSEONG and the other in JONGSEONG, may be mapped
+into the same codepoint. For example, both C<\x{1100}>(CHOSEONG KIYEOK) and C<\x{11A8}>
+(JONGSEONG KIYEOK) are mapped to the same codepoint C<\x{3131}>(LETTER KIYEOK).
+
+This module can be used to match a sequence of Hangul letters over a Korean word.
+For example, C<decomposeSyllable()> from L<Lingua::KO::Hangul::Util>
+decomposes a Hangul syllable to a sequence of conjoining letters. These letters are
+in the range of Hangul Jamo in Unicode. However, when another sequence of letters
+are provided via standard input or network(CGI, etc), they might be in the range of
+Hangul Compatibility Jamo. In this case, you need to convert the former sequence into
+the sequence of Compatibility Jamo to examine whether two sequence match or not.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<Lingua::KO::Hangul::Util>
+
+=back
+
 =cut
 
 use Exporter;
